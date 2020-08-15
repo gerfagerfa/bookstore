@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:bookstore/data.dart';
 import 'package:bookstore/constants.dart';
+import 'package:bookstore/book_detail.dart';
 
 class Bookstore extends StatefulWidget {
   @override
@@ -263,51 +264,62 @@ class _BookstoreState extends State<Bookstore> {
   }
 
   Widget buildBook(Book book, int index){
-    return Container(
-      margin: EdgeInsets.only(right: 32, left: index == 0 ? 16 : 0, bottom: 8),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        mainAxisAlignment: MainAxisAlignment.start,
-        children: <Widget>[
+    return GestureDetector(
+      onTap: () {
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => BookDetail(book: book)),
+        );
+      },
+      child: Container(
+        margin: EdgeInsets.only(right: 32, left: index == 0 ? 16 : 0, bottom: 8),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: <Widget>[
 
-          Expanded(
-            child: Container(
-              decoration: BoxDecoration(
-                boxShadow: [
-                  BoxShadow(
-                    color: Colors.grey.withOpacity(0.5),
-                    spreadRadius: 8,
-                    blurRadius: 12,
-                    offset: Offset(0, 3),
+            Expanded(
+              child: Container(
+                decoration: BoxDecoration(
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.grey.withOpacity(0.5),
+                      spreadRadius: 8,
+                      blurRadius: 12,
+                      offset: Offset(0, 3),
+                    ),
+                  ],
+                ),
+                margin: EdgeInsets.only(bottom: 16, top: 24,),
+                child: Hero(
+                  tag: book.title,
+                  child: Image.asset(
+                    book.image,
+                    fit: BoxFit.fitWidth,
                   ),
-                ],
-              ),
-              margin: EdgeInsets.only(bottom: 16, top: 24,),
-              child: Image.asset(
-                book.image,
-                fit: BoxFit.fitWidth,
+                ),
               ),
             ),
-          ),
 
-          Text(
-            book.title,
-            style: GoogleFonts.catamaran(
-              fontSize: 16,
-              fontWeight: FontWeight.bold,
+            Text(
+              book.title,
+              style: GoogleFonts.catamaran(
+                fontSize: 16,
+                fontWeight: FontWeight.bold,
+              ),
             ),
-          ),
 
-          Text(
-            book.author,
-            style: TextStyle(
-              fontSize: 14,
-              color: Colors.grey,
-              fontWeight: FontWeight.bold,
+            Text(
+              book.author.fullname,
+              style: TextStyle(
+                fontSize: 14,
+                color: Colors.grey,
+                fontWeight: FontWeight.bold,
+              ),
             ),
-          ),
 
-        ],
+          ],
+        ),
       ),
     );
   }
@@ -346,6 +358,7 @@ class _BookstoreState extends State<Bookstore> {
             ),
             child: Container(
               width: 75,
+              height: 75,
               decoration: BoxDecoration(
                 image: DecorationImage(
                   image: AssetImage(author.image), 
