@@ -38,6 +38,7 @@ class _BookstoreState extends State<Bookstore> {
       appBar: AppBar(
         backgroundColor: Colors.white,
         elevation: 0,
+        brightness: Brightness.light,
         leading: Icon(
           Icons.sort,
           color: kPrimaryColor,

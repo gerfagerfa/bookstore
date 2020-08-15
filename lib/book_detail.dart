@@ -29,7 +29,7 @@ class BookDetail extends StatelessWidget {
           ),
 
           Padding(
-            padding: EdgeInsets.only(top: 32, left: 16,),
+            padding: EdgeInsets.only(top: 48, left: 32,),
             child: GestureDetector(
               onTap: () {
                 Navigator.pop(context);
