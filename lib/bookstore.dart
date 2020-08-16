@@ -31,9 +31,6 @@ class _BookstoreState extends State<Bookstore> {
 
   @override
   Widget build(BuildContext context) {
-
-    Size size = MediaQuery.of(context).size;
-
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.white,
@@ -96,7 +93,7 @@ class _BookstoreState extends State<Bookstore> {
                   padding: EdgeInsets.only(right: 75),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: buildFilters(size.width),
+                    children: buildFilters(),
                   ),
                 ),
 
@@ -209,15 +206,15 @@ class _BookstoreState extends State<Bookstore> {
     );
   }
 
-  List<Widget> buildFilters(double width){
+  List<Widget> buildFilters(){
     List<Widget> list = [];
     for (var i = 0; i < filters.length; i++) {
-      list.add(buildFilter(filters[i], width / (filters.length + 1)));
+      list.add(buildFilter(filters[i]));
     }
     return list;
   }
 
-  Widget buildFilter(Filter item, double width){
+  Widget buildFilter(Filter item){
     return GestureDetector(
       onTap: () {
         setState(() {
@@ -436,18 +433,12 @@ class _BookstoreState extends State<Bookstore> {
       },
       child: Container(
         width: 50,
-        child: Stack(
-          children: <Widget>[
-
-            Center(
-              child: Icon(
-                item.iconData,
-                color: selectedItem == item ? kPrimaryColor : Colors.grey[400],
-                size: 28,
-              ),
-            )
-
-          ],
+        child: Center(
+          child: Icon(
+            item.iconData,
+            color: selectedItem == item ? kPrimaryColor : Colors.grey[400],
+            size: 28,
+          ),
         ),
       ),
     );

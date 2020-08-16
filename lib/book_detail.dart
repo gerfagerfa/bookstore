@@ -207,10 +207,6 @@ class BookDetail extends StatelessWidget {
                             borderRadius: BorderRadius.all(
                               Radius.circular(15),
                             ),
-                            border: Border.all(
-                              color: Colors.grey,
-                              width: 1,
-                            ),
                             boxShadow: [
                               BoxShadow(
                                 color: Colors.grey.withOpacity(0.4),
@@ -219,6 +215,10 @@ class BookDetail extends StatelessWidget {
                                 offset: Offset(0, 0),
                               ),
                             ],
+                            border: Border.all(
+                              color: Colors.grey,
+                              width: 1,
+                            ),
                           ),
                           child: Center(
                             child: Row(
